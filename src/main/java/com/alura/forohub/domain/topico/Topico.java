@@ -22,7 +22,7 @@ public class Topico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // evita tópicos duplicados con el mismo título
+    // evita duplicados con el mismo título
     @Column(unique = true)
     private String titulo;
 
@@ -48,5 +48,17 @@ public class Topico {
         this.mensaje = mensaje;
         this.autor = autor;
         this.curso = curso;
+    }
+
+    public void actualizarDatos(DatosActualizarTopico datosActualizarTopico) {
+        if (datosActualizarTopico.titulo() != null) {
+            this.titulo = datosActualizarTopico.titulo();
+        }
+        if (datosActualizarTopico.mensaje() != null) {
+            this.mensaje = datosActualizarTopico.mensaje();
+        }
+        if (datosActualizarTopico.status() != null) {
+            this.status = StatusTopico.valueOf(datosActualizarTopico.status());
+        }
     }
 }
